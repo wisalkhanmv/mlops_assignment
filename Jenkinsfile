@@ -1,22 +1,24 @@
 pipeline {
     agent any
-    
+
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                sh 'pip install -r requirements.txt'
+                git branch: 'main', url: 'https://github.com/wisalkhanmv/mlops_assignment'
             }
         }
-        
-        stage('Test') {
+
+        stage('Build Image') {
             steps {
-                sh 'python3 test_test.py'
+                bat 'docker build -t a1_image .'
             }
         }
-        
-        stage('Deploy') {
+
+        stage('Push to Docker Hub') {
             steps {
-                echo 'deployed'
+                bat 'docker login'
+                bat 'docker tag a1_image wisalkhanmv/mlops_assignment:first_tag'
+                bat 'docker push wisalkhanmv/mlops_assignment:first_tag'
             }
         }
     }
