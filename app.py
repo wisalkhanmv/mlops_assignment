@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import pickle
 from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
 
 app = Flask(__name__)
 
@@ -8,7 +9,6 @@ app = Flask(__name__)
 with open('model.pkl', 'rb') as file:
     model = pickle.load(file)
 
-scaler = StandardScaler()
 
 @app.route('/predict', methods=['POST'])
 def predict():
