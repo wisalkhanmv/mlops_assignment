@@ -14,7 +14,8 @@ scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
 # Split the dataset into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(
+    X_scaled, y, test_size=0.2, random_state=42)
 
 # Train a logistic regression model with increased max_iter
 model = LogisticRegression(max_iter=1000)  # Increase max_iter to 1000

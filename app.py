@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify
 import pickle
-from sklearn.preprocessing import StandardScaler
 
 app = Flask(__name__)
 
@@ -11,16 +10,17 @@ with open('model.pkl', 'rb') as file:
 with open('scaler.pkl', 'rb') as file:
     scaler = pickle.load(file)
 
+
 @app.route('/predict', methods=['POST'])
 def predict():
     # Get the input data from the request
     data = request.get_json()
 
     # Convert the input data into a numpy array
-    input_data = [[data['alcohol'], data['malic_acid'], data['ash'], data['alcalinity_of_ash'], data['magnesium'], 
-                   data['total_phenols'], data['flavanoids'], data['nonflavanoid_phenols'], data['proanthocyanins'], 
+    input_data = [[data['alcohol'], data['malic_acid'], data['ash'], data['alcalinity_of_ash'], data['magnesium'],
+                   data['total_phenols'], data['flavanoids'], data['nonflavanoid_phenols'], data['proanthocyanins'],
                    data['color_intensity'], data['hue'], data['od280/od315_of_diluted_wines'], data['proline']]]
-    
+
     # Scale the input data using the loaded scaler
     input_data_scaled = scaler.transform(input_data)
 
@@ -41,6 +41,7 @@ def predict():
     }
 
     return jsonify(response)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
