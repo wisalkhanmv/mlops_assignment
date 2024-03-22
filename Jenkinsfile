@@ -16,7 +16,7 @@ pipeline {
 
         stage('Push to Docker Hub') {
             steps {
-                sh "echo 'done'"
+                sh 'docker login'
                 sh 'docker tag a1_image wisalkhanmv/mlops_assignment:first_tag'
                 sh 'docker push wisalkhanmv/mlops_assignment:first_tag'
             }
