@@ -1,5 +1,5 @@
-from flask import Flask, request, jsonify
 import pickle
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
@@ -17,9 +17,20 @@ def predict():
     data = request.get_json()
 
     # Convert the input data into a numpy array
-    input_data = [[data['alcohol'], data['malic_acid'], data['ash'], data['alcalinity_of_ash'], data['magnesium'],
-                   data['total_phenols'], data['flavanoids'], data['nonflavanoid_phenols'], data['proanthocyanins'],
-                   data['color_intensity'], data['hue'], data['od280/od315_of_diluted_wines'], data['proline']]]
+    input_data = [[
+        data['alcohol'], data['malic_acid'],
+        data['ash'],
+        data['alcalinity_of_ash'],
+        data['magnesium'],
+        data['total_phenols'],
+        data['flavanoids'],
+        data['nonflavanoid_phenols'],
+        data['proanthocyanins'],
+        data['color_intensity'],
+        data['hue'],
+        data['od280/od315_of_diluted_wines'],
+        data['proline']
+    ]]
 
     # Scale the input data using the loaded scaler
     input_data_scaled = scaler.transform(input_data)
