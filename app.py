@@ -1,6 +1,9 @@
 import pickle
 from flask import Flask, request, jsonify
 
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+
 app = Flask(__name__)
 
 # Load the pre-trained model and scaler
