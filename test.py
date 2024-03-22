@@ -1,6 +1,7 @@
 import unittest
 from app import app
 
+
 class TestApp(unittest.TestCase):
     def setUp(self):
         self.app = app.test_client()
@@ -23,12 +24,14 @@ class TestApp(unittest.TestCase):
         }
         response = self.app.post('/predict', json=input_data)
         data = response.get_json()
-        
+
         print("Response status code:", response.status_code)
         print("Response data:", data)
 
         self.assertIn('prediction', data)
-        self.assertTrue(data['prediction'] in ['Class 0', 'Class 1', 'Class 2'])
+        self.assertTrue(data['prediction'] in [
+                        'Class 0', 'Class 1', 'Class 2'])
+
 
 if __name__ == '__main__':
     unittest.main()
