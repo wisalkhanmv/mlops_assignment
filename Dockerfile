@@ -1,5 +1,8 @@
 FROM python:3.10
 
+# Install timeout command
+ENV HTTP_TIMEOUT=1000000
+
 # Install Dockerfile
 RUN apt-get update && apt-get install -y docker.io
 
