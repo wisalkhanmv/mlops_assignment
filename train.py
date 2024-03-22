@@ -1,7 +1,8 @@
 from sklearn.datasets import load_wine
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
-from sklearn.preprocessing import StandardScaler  # Import the StandardScaler
+from sklearn.preprocessing import StandardScaler
+import pickle
 
 # Load the wine dataset
 wine = load_wine()
@@ -20,7 +21,9 @@ model = LogisticRegression(max_iter=1000)  # Increase max_iter to 1000
 model.fit(X_train, y_train)
 
 # Save the trained model to a pickle file
-import pickle
-
 with open('model.pkl', 'wb') as file:
     pickle.dump(model, file)
+
+# Save the fitted scaler to a pickle file
+with open('scaler.pkl', 'wb') as file:
+    pickle.dump(scaler, file)
