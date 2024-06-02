@@ -3,7 +3,6 @@
 ## Group members:
 
 - i200697 Muhammad Wisal
-- i200844 Miral Fatima
 
 ### How to Install
 
